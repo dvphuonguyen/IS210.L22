@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="baoCao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5cec0c95-bae0-448d-88d0-8036c60f6e61">
+	<property name="ireport.zoom" value="1.2100000000000066"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<subDataset name="chart_report" uuid="ec6c7320-0453-4408-b9a2-da05ff9df863">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<queryString language="plsql">
+			<![CDATA[select c.ngay_4 , case
+                when a.dem_ngaybd is null and b.dem_ngaykt is null then 0
+                when a.dem_ngaybd >= b.dem_ngaykt or b.dem_ngaykt is null then a.dem_ngaybd
+                when a.dem_ngaybd < b.dem_ngaykt or a.dem_ngaybd is null then b.dem_ngaykt
+                end as so_luong_phong_thue,
+                            case
+                when viet_nam is null then 0
+                else viet_nam
+                end as vnam,
+                            case
+                when nuoc_ngoai is null then 0
+                else nuoc_ngoai
+                end as nngoai
+from (  SELECT  extract(month from ADD_MONTHS(TRUNC (to_date('01/01/2021',' dd/mm/yyyy'), 'MONTH'), i)) thang_so,
+                  to_char(ADD_MONTHS (TRUNC (to_date('01/01/2021',' dd/mm/yyyy'), 'MONTH'), i), 'MONTH') ten_thang
+                       FROM XMLTABLE (
+                       'for $i in 0 to xs:int(D) return $i'
+                        PASSING XMLELEMENT (
+                        d,
+                        FLOOR (
+                        MONTHS_BETWEEN (
+                        ADD_MONTHS (TRUNC (SYSDATE, 'YEAR') - 1, 12),
+                               SYSDATE)))
+                               COLUMNS i INTEGER PATH '.')
+    ) a  join
+    (  select distinct(extract(month from ngaybd)) ngay_3, to_char(chitietttp.ngaybd, 'Month') ngay_4
+        from chitietttp
+        order by 1
+    ) c on a.thang_so = c.ngay_3 join (  select extract(month from ctttp1.ngaybd) ngay, count(*) dem_ngaybd
+                                    from chitietttp ctttp1
+                                    where mattp = 3
+                                    group by extract(month from ctttp1.ngaybd)
+                                    order by extract(month from ctttp1.ngaybd)
+                                    ) a on a.ngay = c.ngay_3
+                     join (   select extract(month from ctttp2.ngaykt) ngay_1, count(*) dem_ngaykt
+                                    from chitietttp ctttp2
+                                    where mattp = 3
+                                    group by extract(month from ctttp2.ngaykt)
+                                    order by extract(month from ctttp2.ngaykt)
+                                ) b on b.ngay_1 = c.ngay_3
+                    join (   select extract(month from ngaytt) ngay_5, count(kh.makh) as viet_nam, count(kh1.makh) as nuoc_ngoai
+                                        from hoadon hd left join (   select makh
+                                                                from khachhang
+                                                                where upper(quoctich) = upper('Việt Nam')
+                                                            ) kh on hd.makh = kh.makh
+                                                        left join (   select makh
+                                                                from khachhang
+                                                                where upper(quoctich) <> upper('Việt Nam')
+                                                            ) kh1 on hd.makh = kh1.makh
+                                        group by extract(month from ngaytt)
+                                    ) d on d.ngay_5 = c.ngay_3
+order by c.ngay_3]]>
+		</queryString>
+		<field name="NGAY_4" class="java.lang.String"/>
+		<field name="SO_LUONG_PHONG_THUE" class="java.math.BigDecimal"/>
+		<field name="VNAM" class="java.math.BigDecimal"/>
+		<field name="NNGOAI" class="java.math.BigDecimal"/>
+	</subDataset>
+	<scriptlet name="scriptlet1" class="net.sf.jasperreports.engine.JRDefaultScriptlet"/>
+	<queryString language="plsql">
+		<![CDATA[SELECT A.TEN_THANG, MAHD, CASE
+                            WHEN TONGTIEN IS NULL THEN 0
+                            ELSE TONGTIEN
+                            END THANHTOAN
+FROM (  SELECT  extract(month from ADD_MONTHS(TRUNC (to_date('01/01/2021',' dd/mm/yyyy'), 'MONTH'), i)) thang_so,
+                  to_char(ADD_MONTHS (TRUNC (to_date('01/01/2021',' dd/mm/yyyy'), 'MONTH'), i), 'MONTH') ten_thang
+                       FROM XMLTABLE (
+                       'for $i in 0 to xs:int(D) return $i'
+                        PASSING XMLELEMENT (
+                        d,
+                        FLOOR (
+                        MONTHS_BETWEEN (
+                        ADD_MONTHS (TRUNC (SYSDATE, 'YEAR') - 1, 12),
+                               SYSDATE)))
+                               COLUMNS i INTEGER PATH '.')
+    ) A JOIN HOADON HD ON A.THANG_SO = EXTRACT(MONTH FROM HD.NGAYTT)
+ORDER BY A.THANG_SO, HD.MAHD]]>
+	</queryString>
+	<field name="TEN_THANG" class="java.lang.String"/>
+	<field name="MAHD" class="java.lang.Integer"/>
+	<field name="THANHTOAN" class="java.lang.Integer"/>
+	<variable name="THANHTOAN_1" class="java.lang.Integer" resetType="Group" resetGroup="THANG_GROUP" calculation="Sum">
+		<variableExpression><![CDATA[$F{THANHTOAN}]]></variableExpression>
+	</variable>
+	<group name="THANG_GROUP">
+		<groupExpression><![CDATA[$F{TEN_THANG}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<rectangle>
+					<reportElement x="0" y="1" width="555" height="35" forecolor="#FFFFFF" backcolor="#000033" uuid="e77c0dd2-6059-49df-a013-65fa0f579d5c"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="411" y="1" width="143" height="35" forecolor="#FFCC33" uuid="3628d2ca-66b9-47a4-9067-ea753be58ba1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[AMOUNT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="12" y="1" width="131" height="35" forecolor="#FFCC33" uuid="3f98d1d2-f370-4f4c-b380-b60ebcbcbc14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[MONTH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="167" y="1" width="219" height="35" forecolor="#FFCC33" uuid="a3284146-6136-4b8c-a307-821832bacfbb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[INVOICE CODE]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="87">
+				<line>
+					<reportElement x="186" y="6" width="200" height="1" uuid="bfe1c151-6294-458c-b66b-cbbdf390b431"/>
+				</line>
+				<staticText>
+					<reportElement x="212" y="22" width="196" height="36" forecolor="#000033" uuid="3aff2ac0-37aa-480b-bae3-0eeef089394a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century" size="18" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Amount of invoices: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="417" y="22" width="138" height="36" uuid="e8538881-c5ea-49d5-918f-fd70320f6346"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{THANHTOAN_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="149" splitType="Stretch">
+			<staticText>
+				<reportElement x="86" y="28" width="460" height="48" forecolor="#000033" uuid="f65cf312-d6e0-4187-98d3-041b4f3d5192"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="30" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Monthly hotel report in 2021]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="249" height="140" uuid="f991e153-e277-4611-b946-293d04c92291"/>
+				<imageExpression><![CDATA["C:/Users/ASUS/Downloads/212845646_190818629550921_6470401297906705822_n.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="34">
+			<textField>
+				<reportElement x="209" y="0" width="136" height="33" uuid="a4385982-6a79-4800-8328-d189fa6a9f8a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAHD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0">
+				<reportElement x="419" y="0" width="136" height="33" uuid="bba9ba13-7779-4a23-bc9a-bb286ce256c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{THANHTOAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="12" y="1" width="136" height="33" uuid="7e0eddfd-e423-42b7-a24c-3fd94802cf3e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TEN_THANG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="665" splitType="Stretch">
+			<multiAxisChart>
+				<chart>
+					<reportElement x="78" y="0" width="404" height="271" uuid="1c0a7fce-fb8d-43df-b36e-dabfe51cde5c"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<multiAxisPlot>
+					<plot/>
+					<axis position="rightOrBottom">
+						<lineChart>
+							<chart>
+								<reportElement x="0" y="0" width="0" height="0" backcolor="#FFFFFF" uuid="1f43951e-1723-44cb-aeec-e21f572d2532"/>
+								<chartTitle color="#000000"/>
+								<chartSubtitle color="#000000"/>
+								<chartLegend textColor="#000000" backgroundColor="#FFFFFF"/>
+							</chart>
+							<categoryDataset>
+								<dataset resetType="Report">
+									<datasetRun subDataset="chart_report" uuid="a252eef9-39c8-45dc-b4d1-d89f8ca10f3a">
+										<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+									</datasetRun>
+								</dataset>
+								<categorySeries>
+									<seriesExpression><![CDATA["The number of Vietnamese guest"]]></seriesExpression>
+									<categoryExpression><![CDATA[$F{NGAY_4}]]></categoryExpression>
+									<valueExpression><![CDATA[$F{VNAM}]]></valueExpression>
+								</categorySeries>
+								<categorySeries>
+									<seriesExpression><![CDATA["The number of foreign visitors"]]></seriesExpression>
+									<categoryExpression><![CDATA[$F{NGAY_4}]]></categoryExpression>
+									<valueExpression><![CDATA[$F{NNGOAI}]]></valueExpression>
+								</categorySeries>
+							</categoryDataset>
+							<linePlot>
+								<plot>
+									<seriesColor seriesOrder="0" color="#FFCC33"/>
+									<seriesColor seriesOrder="1" color="#000033"/>
+								</plot>
+								<categoryAxisFormat>
+									<axisFormat>
+										<labelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</labelFont>
+										<tickLabelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</tickLabelFont>
+									</axisFormat>
+								</categoryAxisFormat>
+								<valueAxisFormat>
+									<axisFormat>
+										<labelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</labelFont>
+										<tickLabelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</tickLabelFont>
+									</axisFormat>
+								</valueAxisFormat>
+							</linePlot>
+						</lineChart>
+					</axis>
+					<axis>
+						<barChart>
+							<chart>
+								<reportElement x="0" y="0" width="0" height="0" backcolor="#FFFFFF" uuid="95aa50ee-d00a-443a-a818-9917c8eed641"/>
+								<chartTitle color="#000000"/>
+								<chartSubtitle color="#000000"/>
+								<chartLegend textColor="#000000" backgroundColor="#FFFFFF"/>
+							</chart>
+							<categoryDataset>
+								<dataset resetType="Report">
+									<datasetRun subDataset="chart_report" uuid="d78e5de0-1549-4055-a67f-894f86eb7845">
+										<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+									</datasetRun>
+								</dataset>
+								<categorySeries>
+									<seriesExpression><![CDATA["The number of room occupied"]]></seriesExpression>
+									<categoryExpression><![CDATA[$F{NGAY_4}]]></categoryExpression>
+									<valueExpression><![CDATA[$F{SO_LUONG_PHONG_THUE}]]></valueExpression>
+								</categorySeries>
+							</categoryDataset>
+							<barPlot>
+								<plot>
+									<seriesColor seriesOrder="0" color="#AB3F44"/>
+								</plot>
+								<itemLabel/>
+								<categoryAxisFormat>
+									<axisFormat>
+										<labelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</labelFont>
+										<tickLabelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</tickLabelFont>
+									</axisFormat>
+								</categoryAxisFormat>
+								<valueAxisFormat>
+									<axisFormat>
+										<labelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</labelFont>
+										<tickLabelFont>
+											<font fontName="Times New Roman" size="12"/>
+										</tickLabelFont>
+									</axisFormat>
+								</valueAxisFormat>
+							</barPlot>
+						</barChart>
+					</axis>
+				</multiAxisPlot>
+			</multiAxisChart>
+			<bar3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="77" y="330" width="400" height="335" uuid="21e38cb5-7acc-4ffd-a74a-6eb3ec462217"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{TEN_THANG}]]></seriesExpression>
+						<categoryExpression><![CDATA[0]]></categoryExpression>
+						<valueExpression><![CDATA[$V{THANHTOAN_1}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

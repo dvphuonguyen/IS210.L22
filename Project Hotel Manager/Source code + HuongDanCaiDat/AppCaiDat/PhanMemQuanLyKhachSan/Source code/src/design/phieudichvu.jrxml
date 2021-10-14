@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ead1554-94c7-4d14-a2ce-8e0b03779c59">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="maphieudichvu" class="java.lang.Integer"/>
+	<parameter name="madichvu" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select pdv.mapdv, kh.tenkh, a.ngaysd, a.sldv, a.madv, a.tendv
+from phieudichvu pdv    join khachhang kh on pdv.makh = kh.makh
+                        join (  select mapdv, dv.madv, ngaysd, sldv, tendv
+                                from chitietpdv ctpdv join dichvu dv on ctpdv.madv = dv.madv
+                            ) a on a.mapdv = pdv.mapdv
+where pdv.mapdv = $P{maphieudichvu} and a.madv = $P{madichvu}]]>
+	</queryString>
+	<field name="MAPDV" class="java.lang.Integer"/>
+	<field name="TENKH" class="java.lang.String"/>
+	<field name="NGAYSD" class="java.util.Date"/>
+	<field name="SLDV" class="java.lang.Integer"/>
+	<field name="MADV" class="java.lang.Integer"/>
+	<field name="TENDV" class="java.lang.String"/>
+	<background>
+		<band height="406">
+			<image>
+				<reportElement x="107" y="0" width="802" height="366" uuid="027c84a2-2c79-450a-8cf0-5ec8f0cd9f43"/>
+				<imageExpression><![CDATA["C:/Users/ASUS/Downloads/212227529_141420164662466_6870136864878395529_n.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<columnHeader>
+		<band height="422" splitType="Stretch">
+			<staticText>
+				<reportElement x="186" y="0" width="358" height="80" forecolor="#FFFFFF" uuid="a6c21ca6-5f17-4a40-9e35-cb3a6ab7c212"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="48" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Service card]]></text>
+			</staticText>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="179" y="249" width="365" height="41" forecolor="#000000" uuid="adbb5b38-2e86-4d0c-8334-cc1fce7c7eb7"/>
+				</rectangle>
+				<textField>
+					<reportElement x="340" y="261" width="190" height="20" uuid="5c26742f-e136-47a5-b3f4-a08c4e063037"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TENDV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="192" y="261" width="148" height="20" uuid="add90df3-58da-4fa0-ba2e-96124ab5cb69"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<text><![CDATA[Name of service: ]]></text>
+				</staticText>
+			</elementGroup>
+			<rectangle>
+				<reportElement x="368" y="111" width="176" height="42" uuid="03a54aae-dee2-4cd5-9d60-87db0632d3e0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="377" y="123" width="100" height="20" uuid="ba423372-30af-4d29-a534-489a7974fbf7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Quantity: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="123" width="96" height="20" uuid="8f087dc8-9caf-4399-8153-866a71c14e47"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SLDV}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="179" y="202" width="365" height="43" forecolor="#000000" uuid="4a4c16c2-8510-48d4-bacf-862e507b0041"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="193" y="215" width="148" height="20" uuid="731ccdd5-6630-456c-8d60-fe962f5f1cf9"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<text><![CDATA[Name of customer: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="341" y="215" width="277" height="20" uuid="69790390-3ddc-4e25-8d8e-203d0051602a"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TENKH}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="368" y="157" width="176" height="41" forecolor="#000000" backcolor="#FFFFFF" uuid="7738b76a-5b29-49f5-bb74-1868330a6937"/>
+				</rectangle>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="421" y="169" width="118" height="20" uuid="33057b4b-c976-4cb8-8d8b-137662fb1c7e"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NGAYSD}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="378" y="169" width="100" height="20" uuid="e5e5ff92-6550-439a-b23f-c3d8c406fb11"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<text><![CDATA[Date: ]]></text>
+				</staticText>
+			</elementGroup>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="179" y="111" width="185" height="41" forecolor="#000000" uuid="34a8b34e-c25c-4003-92a0-ab4eef309b1d"/>
+				</rectangle>
+				<textField>
+					<reportElement x="310" y="123" width="100" height="20" uuid="044dec48-782a-401e-82e9-a23afd07752a"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MAPDV}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="186" y="123" width="113" height="20" uuid="3d7edbbe-2bbc-4f0b-b770-101c33c7efef"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14"/>
+					</textElement>
+					<text><![CDATA[ServiceForm id: ]]></text>
+				</staticText>
+			</elementGroup>
+			<staticText>
+				<reportElement x="286" y="318" width="178" height="20" forecolor="#EAC6AA" uuid="37b23a54-c39d-4151-93a2-2941b54d1be7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Thanks for your choice!]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

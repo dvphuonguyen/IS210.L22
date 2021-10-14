@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="thongKeKhachHang" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8d42da39-d6da-4d7a-98a9-4f727da4fe12">
+	<property name="ireport.zoom" value="1.7715610000000197"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString>
+		<![CDATA[SELECT LKH.MALKH, TENLKH, HD.MAKH, KH.TENKH, MAHD, TONGTIEN, NGAYTT
+FROM HOADON HD JOIN KHACHHANG KH ON KH.MAKH = HD.MAKH JOIN LOAIKHACHHANG LKH ON LKH.MALKH = KH.MALKH
+ORDER BY LKH.MALKH DESC, KH.MAKH, NGAYTT ASC]]>
+	</queryString>
+	<field name="MALKH" class="java.lang.Integer"/>
+	<field name="TENLKH" class="java.lang.String"/>
+	<field name="MAKH" class="java.lang.Integer"/>
+	<field name="TENKH" class="java.lang.String"/>
+	<field name="MAHD" class="java.lang.Integer"/>
+	<field name="TONGTIEN" class="java.lang.Integer"/>
+	<field name="NGAYTT" class="java.util.Date"/>
+	<variable name="TONGTIEN_1" class="java.lang.Integer" resetType="Group" resetGroup="GROUP_MAKH" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONGTIEN}]]></variableExpression>
+	</variable>
+	<variable name="TONGTIEN_2" class="java.lang.Integer" resetType="Group" resetGroup="GROUP_MALKH" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONGTIEN}]]></variableExpression>
+	</variable>
+	<variable name="TONGTIEN_3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONGTIEN}]]></variableExpression>
+	</variable>
+	<group name="GROUP_MALKH">
+		<groupExpression><![CDATA[$F{MALKH}]]></groupExpression>
+		<groupFooter>
+			<band height="58">
+				<staticText>
+					<reportElement x="91" y="2" width="153" height="29" forecolor="#FFCC33" uuid="3d816c14-6b04-4758-b98f-1b5e5976193c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century" size="15" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Total of each type: ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="48" width="555" height="1" uuid="2a3fe350-b030-4796-b2cd-391b1af38da6"/>
+				</line>
+				<textField pattern="¤ #,##0">
+					<reportElement x="293" y="2" width="140" height="30" uuid="b6c3d8e7-b1c0-4924-bc5a-1fb4353d1223"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="15"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TONGTIEN_2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="GROUP_MAKH">
+		<groupExpression><![CDATA[$F{MAKH}]]></groupExpression>
+		<groupFooter>
+			<band height="51">
+				<staticText>
+					<reportElement x="91" y="5" width="192" height="38" forecolor="#FFCC33" uuid="5f7a7822-2082-41b8-8ed2-e342fd04b921"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century" size="15" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Total of each customer: ]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0">
+					<reportElement x="293" y="5" width="140" height="38" uuid="65e388a5-422d-4c04-87d4-813a04eccc92"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="15"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TONGTIEN_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="143" splitType="Stretch">
+			<staticText>
+				<reportElement x="105" y="17" width="402" height="79" uuid="afc22c3d-62d2-470e-9bb2-386730317847"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="30" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Statistic of customers report in 2021]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="140" height="140" uuid="75c0353a-710a-4618-a36d-82c5a1ca6264"/>
+				<imageExpression><![CDATA["C:/Users/ASUS/Downloads/212845646_190818629550921_6470401297906705822_n.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="35" forecolor="#FFFFFF" backcolor="#000033" uuid="41af980a-28eb-457d-a2fc-8d8455b2a511"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="91" height="35" forecolor="#FFCC33" uuid="47886c70-8b06-4969-8005-11a1129e543d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[TYPE OF CUSTOMER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="3" width="78" height="35" forecolor="#FFCC33" uuid="7a7ebae3-1f45-4377-a865-20f6bc9264ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="0" width="94" height="35" forecolor="#FFCC33" uuid="151f36f6-be94-47f5-9ed8-c2ba3d0a0909"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[NAME OF CUSTOMER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="1" width="71" height="35" forecolor="#FFCC33" uuid="7df5badc-a096-4455-9fe4-7efc9a9f3940"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="3" width="87" height="35" forecolor="#FFCC33" uuid="2ff68829-b0fb-4ec7-baa2-971a92b8d354"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ACCOUNT DATE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37">
+			<textField pattern="###0">
+				<reportElement x="241" y="0" width="81" height="20" uuid="23295979-5ae8-4ed0-8253-3d7d428c65f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAHD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0">
+				<reportElement x="352" y="0" width="81" height="20" uuid="b62ebca4-7f85-4fbb-be3c-421505bba259"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONGTIEN}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="451" y="0" width="104" height="20" uuid="a35c5aed-4ad1-4b24-b198-3f9f3cf5fb7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NGAYTT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="118" y="0" width="123" height="20" uuid="c7a1966f-6089-4107-a6f5-6801eb5edc59"/>
+				<textElement>
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENKH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="3" y="0" width="102" height="20" uuid="65b55614-cf45-4777-8c0b-a65e94ee3d89"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENLKH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="259" y="10" width="54" height="44" forecolor="#000033" uuid="33fda79c-f948-439b-929d-f428ec845c61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Total: ]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0">
+				<reportElement x="415" y="10" width="140" height="44" uuid="a5d40d11-8ae3-4ef0-a802-7ef440c08195"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TONGTIEN_3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HoaDon" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="919718ac-3de1-43f6-9f52-05a70561c494">
+	<property name="ireport.zoom" value="1.6105100000000134"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="336"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#60A3BC"/>
+			<bottomPen lineWidth="0.5" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#60A3BC"/>
+			<bottomPen lineWidth="0.5" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#60A3BC"/>
+			<bottomPen lineWidth="0.5" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#60A3BC"/>
+			<bottomPen lineWidth="0.5" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#60A3BC"/>
+			<bottomPen lineWidth="0.5" lineColor="#60A3BC"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#60A3BC"/>
+			<bottomPen lineWidth="0.5" lineColor="#60A3BC"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="Text Body"/>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+		</box>
+	</style>
+	<style name="table 8">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="data_room" uuid="4acfa2bb-e14a-411a-a776-79f45c8d6bde">
+		<parameter name="room_hd" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select ngaynp, tenphong, round(ngaytptt - ngaynp + 1) as sl, giaphong, phuthu,
+		 round(ngaytptt - ngaynp + 1)*giaphong*(1+phuthu) as tien_tung_phong
+from hoadon hd join (   select ptp.maptp, ptp.tienphong, cptp.tenphong, cptp.ngaynp, cptp.ngaytptt, cptp.giaphong, cptp.phuthu
+                        from phieuthuephong ptp join (  select ctptp.maptp, plp.tenphong, ctptp.ngaynp, ctptp.ngaytptt, plp.giaphong, ctptp.phuthu
+                                                        from chitietptp ctptp join (    select p.maphong, p.tenphong, lp.giaphong
+                                                                                        from phong p join loaiphong lp on p.malp = lp.malp
+                                                                                    )  plp on plp.maphong = ctptp.maphong
+                                                     ) cptp on cptp.maptp = ptp.maptp
+                    ) tt_ptp on tt_ptp.maptp = hd.maptp
+ where mahd = $P{room_hd}]]>
+		</queryString>
+		<field name="NGAYNP" class="java.sql.Timestamp"/>
+		<field name="TENPHONG" class="java.lang.String"/>
+		<field name="SL" class="java.math.BigDecimal"/>
+		<field name="GIAPHONG" class="java.math.BigDecimal"/>
+		<field name="PHUTHU" class="java.math.BigDecimal"/>
+		<field name="TIEN_TUNG_PHONG" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="dichvu_room" uuid="0800d0ac-62f0-4e61-8a6c-373653ec489f">
+		<parameter name="services_hd" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[select ngaysd, tendv, giadv, sldv, '0.00' as phuthu, giadv * sldv as tien_tung_dv
+from hoadon hd join (   select pdv.mapdv, pdv.tiendv, cpdv.tendv, cpdv.sldv, cpdv.giadv, cpdv.ngaysd
+                        from phieudichvu pdv join ( select ctpdv.mapdv, dv.tendv, ctpdv.sldv, dv.giadv, ctpdv.ngaysd
+                                                    from chitietpdv ctpdv join dichvu dv on ctpdv.madv = dv.madv
+                                                    ) cpdv on pdv.mapdv = cpdv.mapdv
+                    ) tt_pdv on hd.mapdv = tt_pdv.mapdv
+ where mahd = $P{services_hd}]]>
+		</queryString>
+		<field name="NGAYSD" class="java.util.Date"/>
+		<field name="TENDV" class="java.lang.String"/>
+		<field name="GIADV" class="java.lang.Integer"/>
+		<field name="SLDV" class="java.lang.Integer"/>
+		<field name="PHUTHU" class="java.lang.Float"/>
+		<field name="TIEN_TUNG_DV" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="MAHOADON" class="java.lang.Integer"/>
+	<queryString language="plsql">
+		<![CDATA[select  mahd, tongtien, tenkh, ngaytt, hd.maptp, hd.mapdv, case
+        when hd.maptp is null then tien_dv
+        when hd.mapdv is null then tien_phong
+        ELSE (tien_dv + tien_phong)
+        end as tong_tien_tuc_te
+from hoadon hd join khachhang kh on hd.makh = kh.makh
+                left join (   select maptp, SUM(round(ngaytptt - ngaynp + 1)*giaphong*(1+phuthu)) as tien_phong
+                        from chitietptp ctptp join (    select p.maphong, p.tenphong, lp.giaphong
+                                                        from phong p join loaiphong lp on p.malp = lp.malp
+                                                        )  plp on plp.maphong = ctptp.maphong
+                        group by maptp
+                    ) cptp on cptp.maptp = hd.maptp
+               left join (   select ctpdv.mapdv, SUM(giadv * sldv) as tien_dv
+                         from chitietpdv ctpdv join dichvu dv on ctpdv.madv = dv.madv
+                         group by mapdv
+                    ) cpdv on hd.mapdv = cpdv.mapdv
+where mahd =  $P{MAHOADON}]]>
+	</queryString>
+	<field name="MAHD" class="java.math.BigDecimal"/>
+	<field name="TONGTIEN" class="java.lang.Integer"/>
+	<field name="TENKH" class="java.lang.String"/>
+	<field name="NGAYTT" class="java.sql.Timestamp"/>
+	<field name="MAPTP" class="java.math.BigDecimal"/>
+	<field name="MAPDV" class="java.math.BigDecimal"/>
+	<field name="TONG_TIEN_TUC_TE" class="java.lang.Integer"/>
+	<group name="group_mahd">
+		<groupExpression><![CDATA[$F{MAHD}]]></groupExpression>
+	</group>
+	<group name="group_hd">
+		<groupExpression><![CDATA[$F{MAHD}]]></groupExpression>
+	</group>
+	<title>
+		<band height="267" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="0" width="553" height="122" forecolor="#000033" backcolor="#000033" uuid="84e242ce-2cd6-4163-b1a1-1cce2407506e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="113" y="27" width="425" height="67" forecolor="#FFCC33" uuid="ebc0ea8e-7bc4-4c98-91e2-44cd12e4f0b2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Century" size="40"/>
+				</textElement>
+				<text><![CDATA[LUCIFER HOTEL]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="5" y="168" width="100" height="20" uuid="12965860-5e5b-4940-b35f-9ba7c562a38c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAHD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="434" y="148" width="106" height="20" forecolor="#FFCC33" uuid="f35fa4b2-16b0-4a0f-bbb6-5a959395a41e"/>
+				<textElement>
+					<font fontName="Century" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISSUED TO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="167" width="129" height="20" uuid="df786fb3-3435-4227-85c4-5e36ed9c3995"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENKH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="216" y="148" width="122" height="20" forecolor="#FFCC33" uuid="15245ef7-a3f2-4c5e-af67-f1dd55714aa8"/>
+				<textElement>
+					<font fontName="Century" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISSUED DATE:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="151" y="168" width="239" height="20" uuid="b32fb172-7e9c-40e6-9854-e3741e75101a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NGAYTT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="148" width="131" height="20" forecolor="#FFCC33" uuid="23f5a135-1e0e-4f85-a8d0-ebef7b202319"/>
+				<textElement>
+					<font fontName="Century" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE CODE:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="221" width="555" height="42" forecolor="#000033" backcolor="#212E4E" uuid="dc90981d-bb21-4850-9d18-ac7baa0208bb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="203" y="222" width="94" height="40" forecolor="#FFCC33" uuid="73087d7a-c94b-4761-b06d-5b667c2df94f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[QUANTITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="222" width="77" height="40" forecolor="#FFCC33" uuid="6d767fab-9b27-462e-b8e3-414e85b5b2a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PRICE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="222" width="75" height="40" forecolor="#FFCC33" uuid="955a721c-c419-419d-ae2b-6ea55462b814"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="222" width="107" height="40" forecolor="#FFCC33" uuid="91ec9a0d-1d5e-4af7-8fcc-2096fb321f5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="222" width="100" height="40" forecolor="#FFCC33" uuid="0405f747-b6e2-438d-8f7f-92038794ce5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ADDITIONAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="222" width="106" height="40" forecolor="#FFCC33" uuid="c3b32399-f26d-4577-b184-0feb5e7753f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+			<image>
+				<reportElement x="40" y="0" width="362" height="123" uuid="78ef6be2-ab4f-45db-85a0-9f2801f0e56d"/>
+				<imageExpression><![CDATA["C:/Users/ASUS/Downloads/212845646_190818629550921_6470401297906705822_n.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 6" style="table 6" x="0" y="0" width="557" height="20" uuid="f7d67855-5051-4dc1-be06-0f9d992f8b51"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="data_room" uuid="645aae4b-e33f-49bf-956b-68c8f19fb079">
+						<datasetParameter name="room_hd">
+							<datasetParameterExpression><![CDATA[$P{MAHOADON}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="122" uuid="aa4ffc90-846a-4be7-a2a8-af3bb94d51e3">
+						<jr:detailCell style="table 6_TD" height="35" rowSpan="1">
+							<textField pattern="dd/MM/yyyy">
+								<reportElement x="20" y="0" width="102" height="20" uuid="a4bd8842-7f02-4b0a-8cba-bb0719d67b9d"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NGAYNP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="106" uuid="7b5889a2-8b7d-40d3-8a72-a0e0a3ef4932">
+						<jr:detailCell style="table 6_TD" height="35" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="106" height="20" uuid="750966ab-9734-49ca-897f-78fe2a83e355"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TENPHONG}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="97" uuid="07a7dd49-a1bc-4e87-8817-bc00a3b0bf7a">
+						<jr:detailCell style="table 6_TD" height="35" rowSpan="1">
+							<textField pattern="###0">
+								<reportElement x="0" y="0" width="97" height="20" uuid="0bbf4df0-a195-442e-826d-0c683bd38f25"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="76" uuid="b9285778-4e26-4b2a-a63c-1f0bde100ea7">
+						<jr:detailCell style="table 6_TD" height="35" rowSpan="1">
+							<textField pattern="¤ #,##0">
+								<reportElement x="0" y="0" width="76" height="20" uuid="de863c15-c37e-4f84-b565-1b07a0ebac83"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{GIAPHONG}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="84" uuid="09b814b8-7a61-429b-b95b-9102069b0aaf">
+						<jr:detailCell style="table 6_TD" height="35" rowSpan="1">
+							<textField pattern="#,##0 %">
+								<reportElement x="0" y="0" width="84" height="20" uuid="5c01f95d-51bd-4395-8e1d-5da43ffc1b3b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PHUTHU}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="72" uuid="41b8b170-376a-47d8-9530-29f66b54a213">
+						<jr:detailCell height="35" rowSpan="1">
+							<textField pattern="¤ #,##0">
+								<reportElement x="0" y="0" width="72" height="20" uuid="e36017f0-67fb-40c5-bdb4-b1a92bcaa9cb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="13"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TIEN_TUNG_PHONG}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="36">
+			<elementGroup>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" forecolor="#000033" uuid="fbfb75e1-4e94-4213-9b27-a055b65f9bcc"/>
+					<graphicElement>
+						<pen lineWidth="1.75"/>
+					</graphicElement>
+				</line>
+				<componentElement>
+					<reportElement key="table 7" style="table 7" x="0" y="5" width="555" height="20" uuid="d18b373e-0784-4bfe-bb75-808557de93f3"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+						<datasetRun subDataset="dichvu_room" uuid="195444d7-ff01-4f54-a902-8492811b6ef7">
+							<datasetParameter name="services_hd">
+								<datasetParameterExpression><![CDATA[$P{MAHOADON}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="126" uuid="e4c44923-ef9e-4a00-b626-eee0870f39b0">
+							<jr:detailCell style="table 7_TD" height="34" rowSpan="1">
+								<textField pattern="dd/MM/yyyy">
+									<reportElement x="22" y="0" width="104" height="20" uuid="61d141e2-db1e-4346-8454-352f2ca20f77"/>
+									<textElement verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="13"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{NGAYSD}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="101" uuid="51d60d51-b7fe-4ef0-9cb9-9bc423a22219">
+							<jr:detailCell style="table 7_TD" height="34" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="101" height="20" uuid="496d5381-3168-42b7-9c27-eab5f70b53fa"/>
+									<textElement verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="13"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{TENDV}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="96" uuid="0b02510b-3300-41ff-88be-cf8e5aeaf4f2">
+							<jr:detailCell style="table 7_TD" height="34" rowSpan="1">
+								<textField pattern="###0">
+									<reportElement x="0" y="0" width="96" height="20" uuid="86e11dbd-95f4-461b-a3b2-3bddfb4fb005"/>
+									<textElement verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="13"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{SLDV}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="78" uuid="1d5dad92-50c8-4064-805f-96fa6ae56f17">
+							<jr:detailCell style="table 7_TD" height="34" rowSpan="1">
+								<textField pattern="¤ #,##0">
+									<reportElement x="0" y="0" width="78" height="20" uuid="17a9647e-0d72-4d12-b29e-47df8ccff2ce"/>
+									<textElement verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="13"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{GIADV}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="86" uuid="48a01a15-5750-4157-9f27-83f88f8da9bc">
+							<jr:detailCell height="34" rowSpan="1">
+								<textField pattern="#,##0 %">
+									<reportElement x="0" y="0" width="86" height="20" uuid="ccbe0830-d852-4f5d-af65-7f9968f60fab"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="13"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PHUTHU}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="72" uuid="da81d68a-17cb-47a2-b1ab-38eb1ae353b0">
+							<jr:detailCell height="34" rowSpan="1">
+								<textField pattern="¤ #,##0">
+									<reportElement x="0" y="0" width="72" height="20" uuid="c7d4cbc8-b11b-4c0b-a2a2-3212ac8f2292"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Times New Roman" size="13"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{TIEN_TUNG_DV}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</elementGroup>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement x="131" y="19" width="249" height="22" uuid="5b6f9dc1-20ca-4c33-a81d-999695f1924e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lucida Calligraphy" size="15"/>
+				</textElement>
+				<text><![CDATA[THANK YOU VERY MUCH!]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="132" splitType="Stretch">
+			<staticText>
+				<reportElement x="305" y="74" width="129" height="20" forecolor="#FFCC33" uuid="96a2e745-229f-4d7b-ab2a-cddab74fc2f3"/>
+				<textElement>
+					<font fontName="Century" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VAT Tax: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="111" width="129" height="20" forecolor="#FFCC33" uuid="7eee2aed-ece4-46f0-949a-f4149f8831ad"/>
+				<textElement>
+					<font fontName="Century" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance Due: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="507" y="74" width="48" height="20" uuid="c0e36e51-5c4d-4dcf-927e-93fedb3b568c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[10%]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0">
+				<reportElement x="455" y="111" width="100" height="20" uuid="d43bb569-73b5-4f54-9681-5b840e5b36f0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century" size="13" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONGTIEN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="43" width="129" height="20" forecolor="#FFCC33" uuid="d67535c0-0b54-4efd-8816-7af26a8c8fcb"/>
+				<textElement>
+					<font fontName="Century" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[After discount:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0">
+				<reportElement x="455" y="43" width="100" height="20" uuid="48d5e0f5-dc5e-45d5-bef3-bd911a7b65fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century" size="13" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONGTIEN}/1.1]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="6" width="555" height="1" forecolor="#000033" uuid="7aed4b7a-cd44-4b02-b9a3-5574c2000b57"/>
+				<graphicElement>
+					<pen lineWidth="1.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="94" width="555" height="1" forecolor="#000033" uuid="b67828cf-c254-4822-9f05-d43e113b69c1"/>
+				<graphicElement>
+					<pen lineWidth="1.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="305" y="13" width="55" height="20" forecolor="#FFCC33" uuid="dd02a1e1-d5a0-49dd-8677-cb8993efdc43"/>
+				<textElement>
+					<font fontName="Century" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0">
+				<reportElement x="455" y="13" width="100" height="20" uuid="4e70a635-a596-40ec-ba83-3650849f45cc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century" size="13" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONG_TIEN_TUC_TE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+	<noData>
+		<band height="137">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="-2" y="0" width="557" height="137" forecolor="#000000" uuid="57d76a5e-2670-4c86-81b4-16b6fc8e24f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lucida Calligraphy" size="23"/>
+				</textElement>
+				<text><![CDATA[PLEASE, CHECK YOUR INFOMMATION!]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

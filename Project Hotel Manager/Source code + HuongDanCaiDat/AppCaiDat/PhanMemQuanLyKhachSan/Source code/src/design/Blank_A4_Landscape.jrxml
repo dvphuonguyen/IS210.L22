@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_Landscape" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11b5f1ed-3904-4ea5-88f2-0e7590780818">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="plsql">
+		<![CDATA[select c.ngay_4 , case
+                when a.dem_ngaybd is null and b.dem_ngaykt is null then 0
+                when a.dem_ngaybd >= b.dem_ngaykt or b.dem_ngaykt is null then a.dem_ngaybd
+                when a.dem_ngaybd < b.dem_ngaykt or a.dem_ngaybd is null then b.dem_ngaykt
+                end as so_luong_phong_thue,
+                            case
+                when viet_nam is null then 0
+                else viet_nam
+                end as vnam,
+                            case
+                when nuoc_ngoai is null then 0
+                else nuoc_ngoai
+                end as nngoai
+from (  SELECT  extract(month from ADD_MONTHS(TRUNC (to_date('01/01/2021',' dd/mm/yyyy'), 'MONTH'), i)) thang_so,
+                  to_char(ADD_MONTHS (TRUNC (to_date('01/01/2021',' dd/mm/yyyy'), 'MONTH'), i), 'MONTH') ten_thang
+                       FROM XMLTABLE (
+                       'for $i in 0 to xs:int(D) return $i'
+                        PASSING XMLELEMENT (
+                        d,
+                        FLOOR (
+                        MONTHS_BETWEEN (
+                        ADD_MONTHS (TRUNC (SYSDATE, 'YEAR') - 1, 11),
+                               SYSDATE)))
+                               COLUMNS i INTEGER PATH '.')
+    ) a  join
+    (  select distinct(extract(month from ngaybd)) ngay_3, to_char(chitietttp.ngaybd, 'Month') ngay_4
+        from chitietttp
+        order by 1
+    ) c on a.thang_so = c.ngay_3 join (  select extract(month from ctttp1.ngaybd) ngay, count(*) dem_ngaybd
+                                    from chitietttp ctttp1
+                                    where mattp = 3
+                                    group by extract(month from ctttp1.ngaybd)
+                                    order by extract(month from ctttp1.ngaybd)
+                                    ) a on a.ngay = c.ngay_3
+                     join (   select extract(month from ctttp2.ngaykt) ngay_1, count(*) dem_ngaykt
+                                    from chitietttp ctttp2
+                                    where mattp = 3
+                                    group by extract(month from ctttp2.ngaykt)
+                                    order by extract(month from ctttp2.ngaykt)
+                                ) b on b.ngay_1 = c.ngay_3
+                    join (   select extract(month from ngaytt) ngay_5, count(kh.makh) as viet_nam, count(kh1.makh) as nuoc_ngoai
+                                        from hoadon hd left join (   select makh
+                                                                from khachhang
+                                                                where upper(quoctich) = upper('Việt Nam')
+                                                            ) kh on hd.makh = kh.makh
+                                                        left join (   select makh
+                                                                from khachhang
+                                                                where upper(quoctich) <> upper('Việt Nam')
+                                                            ) kh1 on hd.makh = kh1.makh
+                                        group by extract(month from ngaytt)
+                                    ) d on d.ngay_5 = c.ngay_3
+order by c.ngay_3]]>
+	</queryString>
+	<field name="NGAY_4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NGAY_4"/>
+		<property name="com.jaspersoft.studio.field.label" value="NGAY_4"/>
+	</field>
+	<field name="SO_LUONG_PHONG_THUE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="SO_LUONG_PHONG_THUE"/>
+		<property name="com.jaspersoft.studio.field.label" value="SO_LUONG_PHONG_THUE"/>
+	</field>
+	<field name="VNAM" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="VNAM"/>
+		<property name="com.jaspersoft.studio.field.label" value="VNAM"/>
+	</field>
+	<field name="NNGOAI" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="NNGOAI"/>
+		<property name="com.jaspersoft.studio.field.label" value="NNGOAI"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="301" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="660" height="301" uuid="56238b25-5b17-47b4-a3f5-6cfa95bcab12"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{NGAY_4}]]></seriesExpression>
+						<categoryExpression><![CDATA[0]]></categoryExpression>
+						<valueExpression><![CDATA[0]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</columnHeader>
+</jasperReport>
